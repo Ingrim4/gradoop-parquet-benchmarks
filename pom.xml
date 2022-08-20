@@ -3,7 +3,7 @@
 
 	<groupId>org.gradoop.benchmarks</groupId>
 	<artifactId>gradoop-parquet-benchmarks</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -46,11 +46,13 @@
 			<version>${dep.gradoop.version}</version>
 		</dependency>
 
+<!--
 		<dependency>
 			<groupId>org.gradoop</groupId>
 			<artifactId>gradoop-gdl</artifactId>
 			<version>${dep.gradoop-gdl.version}</version>
 		</dependency>
+-->
 
 		<!-- Apache Flink dependencies -->
 		<dependency>
@@ -106,8 +108,16 @@
 							<minimizeJar>true</minimizeJar>
 							<relocations>
 								<relocation>
+									<pattern>com.google.protobuf</pattern>
+									<shadedPattern>shaded.gradoop.com.google.protobuf</shadedPattern>
+								</relocation>
+								<relocation>
 									<pattern>org.apache.commons.cli</pattern>
 									<shadedPattern>org.gradoop.examples.thirdparty.commons_cli</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>org.gradoop.gdl</pattern>
+									<shadedPattern>shaded.gradoop.org.gradoop.gdl</shadedPattern>
 								</relocation>
 							</relocations>
 							<filters>

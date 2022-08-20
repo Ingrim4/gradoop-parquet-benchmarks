@@ -30,6 +30,8 @@ import org.gradoop.flink.io.impl.csv.CSVDataSink;
 import org.gradoop.flink.io.impl.csv.CSVDataSource;
 import org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSink;
 import org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSource;
+import org.gradoop.flink.io.impl.parquet.protobuf.ProtobufParquetDataSink;
+import org.gradoop.flink.io.impl.parquet.protobuf.ProtobufParquetDataSource;
 import org.gradoop.flink.io.impl.parquet.raw.ParquetDataSink;
 import org.gradoop.flink.io.impl.parquet.raw.ParquetDataSource;
 import org.gradoop.flink.model.impl.epgm.LogicalGraph;
@@ -40,8 +42,10 @@ import org.gradoop.temporal.io.impl.csv.TemporalCSVDataSink;
 import org.gradoop.temporal.io.impl.csv.TemporalCSVDataSource;
 import org.gradoop.temporal.io.impl.csv.indexed.TemporalIndexedCSVDataSink;
 import org.gradoop.temporal.io.impl.csv.indexed.TemporalIndexedCSVDataSource;
-import org.gradoop.temporal.io.impl.parquet.TemporalParquetDataSink;
-import org.gradoop.temporal.io.impl.parquet.TemporalParquetDataSource;
+import org.gradoop.temporal.io.impl.parquet.protobuf.TemporalProtobufParquetDataSink;
+import org.gradoop.temporal.io.impl.parquet.protobuf.TemporalProtobufParquetDataSource;
+import org.gradoop.temporal.io.impl.parquet.raw.TemporalParquetDataSink;
+import org.gradoop.temporal.io.impl.parquet.raw.TemporalParquetDataSource;
 import org.gradoop.temporal.model.impl.TemporalGraph;
 import org.gradoop.temporal.util.TemporalGradoopConfig;
 
@@ -182,6 +186,8 @@ public abstract class AbstractRunner {
 			return new IndexedCSVDataSource(directory, config);
 		case "parquet":
 			return new ParquetDataSource(directory, config);
+		case "protobuf":
+			return new ProtobufParquetDataSource(directory, config);
 		default:
 			throw new IllegalArgumentException("Unsupported format: " + format);
 		}
@@ -208,6 +214,8 @@ public abstract class AbstractRunner {
 			return new TemporalIndexedCSVDataSource(directory, config);
 		case "parquet":
 			return new TemporalParquetDataSource(directory, config);
+		case "protobuf":
+			return new TemporalProtobufParquetDataSource(directory, config);
 		default:
 			throw new IllegalArgumentException("Unsupported format: " + format);
 		}
@@ -232,6 +240,8 @@ public abstract class AbstractRunner {
 			return new IndexedCSVDataSink(directory, config);
 		case "parquet":
 			return new ParquetDataSink(directory, config);
+		case "protobuf":
+			return new ProtobufParquetDataSink(directory, config);
 		default:
 			throw new IllegalArgumentException("Unsupported format: " + format);
 		}
@@ -256,6 +266,8 @@ public abstract class AbstractRunner {
 			return new TemporalIndexedCSVDataSink(directory, config);
 		case "parquet":
 			return new TemporalParquetDataSink(directory, config);
+		case "protobuf":
+			return new TemporalProtobufParquetDataSink(directory, config);
 		default:
 			throw new IllegalArgumentException("Unsupported format: " + format);
 		}

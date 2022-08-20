@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.gradoop.benchmarks</groupId>
   <artifactId>gradoop-parquet-benchmarks</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.3</version>
   <build>
     <plugins>
       <plugin>
@@ -27,8 +27,16 @@
               <minimizeJar>true</minimizeJar>
               <relocations>
                 <relocation>
+                  <pattern>com.google.protobuf</pattern>
+                  <shadedPattern>shaded.gradoop.com.google.protobuf</shadedPattern>
+                </relocation>
+                <relocation>
                   <pattern>org.apache.commons.cli</pattern>
                   <shadedPattern>org.gradoop.examples.thirdparty.commons_cli</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.gradoop.gdl</pattern>
+                  <shadedPattern>shaded.gradoop.org.gradoop.gdl</shadedPattern>
                 </relocation>
               </relocations>
               <filters>
@@ -110,19 +118,19 @@
     </dependency>
   </dependencies>
   <properties>
+    <dep.commons-cli.version>1.4</dep.commons-cli.version>
+    <project.maven.version>3.0.0</project.maven.version>
     <plugin.maven-compiler.version>3.8.0</plugin.maven-compiler.version>
     <dep.flink.version>1.9.3</dep.flink.version>
-    <dep.gradoop.version>0.7.0-SNAPSHOT</dep.gradoop.version>
-    <plugin.maven-shade.version>3.2.1</plugin.maven-shade.version>
-    <dep.commons-cli.version>1.4</dep.commons-cli.version>
-    <project.build.targetJdk>1.8</project.build.targetJdk>
-    <dep.gradoop-gdl.version>0.5.3</dep.gradoop-gdl.version>
-    <project.maven.version>3.0.0</project.maven.version>
-    <plugin.maven-jar.version>3.1.1</plugin.maven-jar.version>
-    <plugin.maven-spotbugs.version>3.1.11</plugin.maven-spotbugs.version>
-    <plugin.maven-checkstyle.version>3.0.0</plugin.maven-checkstyle.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <plugin.maven-surefire.version>2.22.1</plugin.maven-surefire.version>
+    <project.build.targetJdk>1.8</project.build.targetJdk>
+    <plugin.maven-jar.version>3.1.1</plugin.maven-jar.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <dep.gradoop-gdl.version>0.5.3</dep.gradoop-gdl.version>
+    <plugin.maven-spotbugs.version>3.1.11</plugin.maven-spotbugs.version>
+    <plugin.maven-shade.version>3.2.1</plugin.maven-shade.version>
+    <dep.gradoop.version>0.7.0-SNAPSHOT</dep.gradoop.version>
+    <plugin.maven-checkstyle.version>3.0.0</plugin.maven-checkstyle.version>
     <license.licenseName>apache_v2</license.licenseName>
   </properties>
 </project>
